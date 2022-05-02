@@ -1,0 +1,21 @@
+#################################################################################################
+new project -> projectform versioncontrol : 깃업의 소스를 다운받아서 사용가능
+
+초반에 빈구성 하는데 오래걸린다(loadon1)
+
+동적으로 빈을 만들고 구성하는게 어렵다 동적으로 만들면 다시 재구성해야해서
+
+*HiddenHttpMethodFilter
+-과거 put이없을때 input 히든으로 보내면 이게 풋이야라는걸 알게 해줬던거
+
+*componentScan : 특정 패키지 또는 클래스 내부의 stereo type bean을 생성하기위한것
+	-ster
+	-basePackagesClasses  : 패키지로 쓰면 오타날수도 있어서 해당기능을 사용할것을 권장함
+		-marker interface : 하는역할없이 기준만 찍어줌  : Base 
+		-해당 인터페이스를 기준패키지를 아래로 다 뒤진다. 
+
+*excludeFilters : 제외 시키는 것
+	excludeFilters = { @ComponentScan.Filter(Controller.class)})
+	Contoroller 클래스를 제외시켜라
+*includeFilters : 포함시키는 것
+#################################################################################################
