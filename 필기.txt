@@ -18,4 +18,170 @@ new project -> projectform versioncontrol : 깃업의 소스를 다운받아서 
 	excludeFilters = { @ComponentScan.Filter(Controller.class)})
 	Contoroller 클래스를 제외시켜라
 *includeFilters : 포함시키는 것
+
+// stereo type bean
+@Controller
+@Service
+@Repository
+@Component
+
+*default servlet이란 무엇인가, spring mvc의 defaultservlet은 dispatcher servlet이다.
+	톰켓의 defaultServlet이 .do 외의 것을 처리했다
+	html css 같은걸 하는게 dispatcher다
+	지난주에는 톰켓의  디슾쳐서블릿에게 넘겼고 스프링엠브시에서는 dispatcherservlet이 defaultservlet이 됐다
+	근데 결국엔 사실 dispatcher가 톰켓의 defaultservlet에게 위임을 한다
+	이러는 이유는 모든 요청을 dispatcher servlet이 처리하게 하기 위해서임
+*dispatcher servlet이 생성되어야지 
+	-웹관련 
+
+*rootapplication context
+	-서블릿컨텍스트가 처음 구성될때 웹고 관련되지 않은 db, resource bundle서브릿이 아니여도
+		필터같은데서도 쓸수있다 글너걸 루트어플리케이션에서 처리한다
+
+
+applicationcontext vs webapplicationcontext
+webapplicationcontext: apllicationcontext + servletContext
+
+applicationContext = BeanFactory + a
+	BeanFactory
+		Bean
+
+rootConfig -> root applicationcontext
+webConfig -> servlet
+
+root applicationContext
+	servlet applicationContext 	-dispatcherServlet
+		db connection bean
+
 #################################################################################################
+
+
+
+
+
+
+
+
+id
+ email name 
+userRegister postRegister
+
+
+
+
+
+
+
+
+package com.nhnacademy.springmvc.controller;
+
+import com.nhnacademy.springmvc.domain.Post;
+import com.nhnacademy.springmvc.exception.UserNotFoundException;
+import com.nhnacademy.springmvc.repository.PostRepository;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/post")
+public class PostController {
+    private final PostRepository postRepository;
+
+    public PostController(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
+
+    @ModelAttribute("post")
+    public Post getPost(@PathVariable("postId") long postId) {
+        return postRepository.getPost(postId);
+    }
+
+    // TODO #2: 게시물 조회 구현
+    @GetMapping("/{postId}")
+    public String viewPost(@ModelAttribute("post") Post post, Model model) {
+        model.addAttribute("post", post);
+        // ...
+        return "postView";
+    }
+
+    // TODO #3: 게시물 수정 form 구현
+    @GetMapping("/{postId}/modify")
+    public String postModifyForm(@ModelAttribute("post") Post post, Model model) {
+        model.addAttribute("post", post);
+        // ...
+        return "postModify";
+    }
+    
+    
+    @ExceptionHandler({UserNotFoundException.class})
+    public String handleException(Model model, UserNotFoundException ex) {
+        model.addAttribute("exception", ex);
+        return "error";
+    }
+}
+
+
+
+반갑습니다. 반장 최겸준입니다.
+과제는 잘들 하고 계신지요?
+
+엄청난 분량의 주말과제와 특히나 어려웠던 오늘 수업때문에 심적으로나 육체적으로나 많이 힘드실줄 압니다.
+사무장님과 적지않은 시간동안 자치활동에 관한 애기와 취업에 관한 얘기를 나누었고 해당 내용중 공유하면 동기들이 기분 좋을만한 소식이 있겠다 싶어서
+전달합니다.
+
+지금까지 우리는(나만일수도) 상위 우수자에게 입사 기회가 주어진다고 알고 있었고 상대평가라는 전제하에 치열하게 공부해왔습니다.
+하지만 사실은 조금 다르더군요.
+실질적으로 부학장님께서 얘기해주셨던 합격기준 그자체가 입사기회의 기준이었습니다.(인증과 기회는 다른 개념)
+
+다시 말해서, 처음에 광고했던 상위 우수자에 대한 기회라는 개념은 크게 존재하지 않고(물론 극상위자에겐 존재할지도 모르겠습니다만) 
+절대평가로 이루어진다는 것입니다.
+모두가 절대평가에 합격할수도 모두가 떨어질수도 있겠지만 사무장님은 실제 개발자의 역량에 맞으면 합격할수 있다고 얘기해주셨습니다.
+이의 요는 다같이 winwin 해야한다는 것이겠죠.
+
+그래서 사무장님이나 다른분께서 공부를 더하라고 면담시에 말씀주시면 반드시 끌고 가서 결국 좋은 결과를 만들게 해주고 싶어서라고 합니다.
+끝까지 고생하면 낙이 올듯 합니다.
+조금 더 공유하고 알려주고 물어보고 함께해나가는 문화를 만들었으면 좋겠습니다.
+
+감사합니다.
+
+추가로 자치위원들을 선발하고자 합니다.
+특정 업무를 얻는 자치위원이 아니라 자치활동에 필요한 업무가 있을때 동기들에게 도움을 주실 분입니다.
+지금 당장은 별일이 없지만 차후에 일이 바빠질수도 있고 단체활동시에 도움을 주실 분이라고 생각하면 되겠습니다.
+사무장님도 이에 적극 지지해주셨습니다.
+
+개인공부시간때문에 아무도 지원안하실거같지만 지원해주시면 감사하겠습니다.(크게 할일 없을겁니다 ^^)
+
+
+
+교수님 반갑습니다. 최겸준 교육생입니다
+과제를 하던 중 궁금증이 발생하여 질문드립니다.
+
+registerStudent()메소드에서 ModelAndView를 사용합니다. 이경우엔 redirect보다는 jsp에게 include하기 위함으로
+알고있습니다. 하지만 그렇게되면 디스페쳐 서블릿이 직접적으로 처리하는 형식에서 어긋나버립니다.
+본인 컨트롤러가 본인과 연결된 jsp가 아닌 다른 컨트롤러가 뻔히 있는데도 그 컨트롤러를 무시하고 jsp직접적으로 출력시키게되면 
+이게 frontcontroller 패턴에 부합한가? 에 대한 의문이 생겨서 질문드립니다. 
+
+@PostMapping("/{studentId}/modify")
+    public String modifyUser(@ModelAttribute Student student,
+//                             @Valid @ModelAttribute StudentModifyRequest,
+                             BindingResult bindingResult,
+                             Model model) throws StudentNotFoundException {
+
+        studentRepository.modify(student);
+        model.addAttribute("student", student);
+        if (bindingResult.hasErrors()) {
+            throw new ValidationFailedException(bindingResult);
+        }
+
+        return "studentView";
+
+
+
+webapplicationcontext = applicationContext + servletContext
+
+value = ""user , binding =false 
+
