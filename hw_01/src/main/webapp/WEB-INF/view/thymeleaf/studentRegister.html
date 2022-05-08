@@ -1,0 +1,28 @@
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>학생 정보 등록</title>
+</head>
+<body>
+<a href="?locale=ko">
+    <b th:if="${#locale.toString() eq 'ko'}">ko</b>
+    <span th:unless="${#locale.toString() eq 'ko'}">ko</span>
+</a><br />
+<a href="?locale=en">
+    <b th:if="${#locale.toString() eq 'en'}">en</b>
+    <span th:unless="${#locale.toString() eq 'en'}">en</span>
+</a><br /><br />
+
+    <form method="post" action="/student/register">
+        <span th:text="#{bun_password}"></span> : <input type="password" name="password" /><br />
+        <span th:text="#{bun_name}"></span> : <input type="text" name="name" /><br />
+        <span th:text="#{bun_email}"></span>: <input type="text" name="email" /><br />
+        <span th:text="#{bun_score}"></span>: <input type="text" name="score" /><br />
+        <span th:text="#{bun_comment}"></span>: <br />
+        <textarea name="comment" rows="10" cols="80"></textarea><br />
+
+        <input type="submit" th:value = "#{bun_submit}"/>
+    </form>
+</body>
+</html>

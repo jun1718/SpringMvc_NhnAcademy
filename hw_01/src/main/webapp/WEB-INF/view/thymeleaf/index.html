@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+<a href="?locale=ko">
+    <b th:if="${#locale.toString() eq 'ko'}">ko</b>
+    <span th:unless="${#locale.toString() eq 'ko'}">ko</span>
+</a><br />
+<a href="?locale=en">
+    <b th:if="${#locale.toString() eq 'en'}">en</b>
+    <span th:unless="${#locale.toString() eq 'en'}">en</span>
+</a><br /><br />
+
+
+<a href="/student/login" th:text="#{bun_goLogin}"></a>
+</body>
+</html>

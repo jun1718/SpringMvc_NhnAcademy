@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<a href="?locale=ko">
+    <b th:if="${#locale.toString() eq 'ko'}">ko</b>
+    <span th:unless="${#locale.toString() eq 'ko'}">ko</span>
+</a><br />
+<a href="?locale=en">
+    <b th:if="${#locale.toString() eq 'en'}">en</b>
+    <span th:unless="${#locale.toString() eq 'en'}">en</span>
+</a><br /><br />
+
+<form method="post" action="/student/login">
+    <span th:text="#{bun_id}"></span>
+    : <input type="text" name="id"/><br/>
+    <span th:text="#{bun_pw}"></span>
+    : <input type="password" name="pw"/><br/>
+    <input type="submit" th:value="#{bun_submit}"/>
+</form>
+</body>
+</html>

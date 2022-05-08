@@ -1,0 +1,10 @@
+PUT http://localhost:8080/studentsRest/4 HTTP/1.1
+Content-type: application/json
+
+{
+  "name": "modify",
+  "email": "modify@naer.com",
+  "score": 100,
+  "comment": "modimodi",
+  "password": "12345"
+}

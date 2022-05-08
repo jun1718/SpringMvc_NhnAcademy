@@ -1,0 +1,46 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>학생 정보 조회</title>
+</head>
+<body>
+
+<div th:if = "${hideScore eq 'yes'}">
+    <a href="?locale=ko&hideScore=yes">
+        <b th:if="${#locale.toString() eq 'ko'}">ko</b>
+        <span th:unless="${#locale.toString() eq 'ko'}">ko</span>
+    </a><br />
+
+    <a href="?locale=en&hideScore=yes">
+        <b th:if="${#locale.toString() eq 'en'}">en</b>
+        <span th:unless="${#locale.toString() eq 'en'}">en</span>
+    </a><br />
+</div>
+
+<div th:if = "${hideScore ne 'yes'}">
+    <a href="?locale=ko">
+        <b th:if="${#locale.toString() eq 'ko'}">ko</b>
+        <span th:unless="${#locale.toString() eq 'ko'}">ko</span>
+    </a><br />
+    <a href="?locale=en">
+        <b th:if="${#locale.toString() eq 'en'}">en</b>
+        <span th:unless="${#locale.toString() eq 'en'}">en</span>
+    </a><br />
+</div><br />
+
+
+
+<span th:text = "#{bun_name}"></span> : <span th:text = "${student.name}"></span><br/>
+<span th:text="#{bun_email}"></span> : <span th:text = "${student.email}"></span><br />
+    <div th:if="${hideScore ne 'yes'}">
+        <span th:text = "#{bun_score}"></span>: <span th:text = "${student.score}"></span><br />
+        <span th:text = "#{bun_comment}"></span>: <span th:text = "${student.comment}"></span><br />
+    </div>
+    <br />
+<a th:href="${'/student/' + student.id +'/modify'}">
+    <span th:text = "#{bun_modify}"></span>
+</a><br />
+
+<a href ="/student/logout" th:text="#{bun_logout}"></a>
+</body>
+</html>

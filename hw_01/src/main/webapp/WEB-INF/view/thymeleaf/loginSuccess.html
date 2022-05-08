@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login success</title>
+</head>
+<body>
+<a href="?locale=ko">
+    <b th:if="${#locale.toString() eq 'ko'}">ko</b>
+    <span th:unless="${#locale.toString() eq 'ko'}">ko</span>
+</a><br/>
+<a href="?locale=en">
+    <b th:if="${#locale.toString() eq 'en'}">en</b>
+    <span th:unless="${#locale.toString() eq 'en'}">en</span>
+</a><br/><br/>
+
+
+<span th:text="${userId}"></span>
+<span th:text="#{bun_loginSuccessWelcomeMessage}"></span><br/><br/>
+
+<span th:if="${userId eq 1}">
+    <a href ="/student/register" th:text="#{bun_register}"></a>
+</span>
+<a href ="/student/logout" th:text="#{bun_logout}"></a>
+</body>
+</html>
