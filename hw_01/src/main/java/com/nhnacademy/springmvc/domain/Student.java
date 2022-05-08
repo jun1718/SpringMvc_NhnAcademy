@@ -22,4 +22,16 @@ public class Student {
         this.score = score;
         this.comment = comment;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", email='" + email + '\'' +
+            ", score=" + score +
+            ", comment='" + comment + '\'' +
+            ", password='" + password + '\'' +
+            '}';
+    }
 }

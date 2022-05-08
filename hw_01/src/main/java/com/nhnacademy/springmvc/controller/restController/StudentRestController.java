@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +33,7 @@ public class StudentRestController {
     public StudentRestController(
         StudentRepository studentRepository,
         StudentRegisterRequestValidator validator) {
+
         this.studentRepository = studentRepository;
         this.validator = validator;
     }
@@ -50,10 +52,10 @@ public class StudentRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public Student registerStudent(@Valid @RequestBody StudentRegisterRequest studentRegister,
                                    BindingResult bindingResult) {
-        System.out.println("-=================================");
         if (bindingResult.hasErrors()) {
             throw new ValidationFailedException(bindingResult);
         }
+
         Student student = studentRepository.register(studentRegister.getPassword(), studentRegister.getName(), studentRegister.getEmail(),
             studentRegister.getScore(), studentRegister.getComment());
 
@@ -65,9 +67,10 @@ public class StudentRestController {
 //        Student student = studentRepository.getStudent(studentId);
 //        return student;
 //    }
+
     @GetMapping("/{studentId}") // 조회
     public ResponseEntity<Student> viewStudent(@ModelAttribute("student") Student student) {
-        return ResponseEntity.status(201).body(student);
+        return ResponseEntity.status(200).body(student);
     }
 
     @PutMapping("/{studentId}") // 수정
@@ -86,13 +89,4 @@ public class StudentRestController {
     protected void initBinder(WebDataBinder binder) {
         binder.addValidators(validator);
     }
-
-//    @ResponseBody
-//    @GetMapping(params = {"!hideScore"}) // 사용할 필요 없지만 공부목적으로 사용
-//    public ResponseEntity<Student> viewStudent(@ModelAttribute("studentId") Long studentId, ModelMap modelMap) {
-//        modelMap.addAttribute("student", studentRepository.getStudent(studentId));
-////        return "thymeleaf/studentView";
-//        return ResponseEntity.ok()
-//            .body(studentRepository.getStudent(studentId));
-//    }
 }

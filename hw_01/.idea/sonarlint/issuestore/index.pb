@@ -5,12 +5,8 @@
 Ksrc/main/java/com/nhnacademy/springmvc/exception/UserNotFoundException.java,1\4\148ea113975c383e81472deeef1bd040bc0d08ad
 u
 Esrc/main/java/com/nhnacademy/springmvc/controller/ControllerBase.java,c\6\c659e64823986050fbc8c8eb50e0d0ffa365c723
-m
-=src/main/java/com/nhnacademy/springmvc/WebAppInitializer.java,a\4\a422e6ba9e93a07e4803f2e981138ba92f7de2d0
 a
 1src/main/webapp/WEB-INF/view/thymeleaf/error.html,d\4\d4e376b3ea67b4ce4f726e26d751116682014469
-
-Osrc/main/java/com/nhnacademy/springmvc/exception/ValidationFailedException.java,d\5\d5abbb685b30bcb2293398dc4425841907265e03
 p
 @src/main/java/com/nhnacademy/springmvc/service/LoginService.java,5\1\5174f0d1b1d7d2c476f497889e5f9ec4cca6c77b
 a
